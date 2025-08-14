@@ -4,6 +4,7 @@ import Navbar from "./Components/Navbar";
 import Main from "./Components/Main";
 import MovieListBox from "./Components/MovieListBox";
 import MovieWatchedBox from "./Components/MovieWatchedBox";
+import MovieList from "./Components/MovieList";
 
 export const tempMovieData = [
   {
@@ -59,7 +60,10 @@ export default function App() {
     <>
       <Navbar movies={movies} />
       <Main>
-        <MovieListBox movies={movies} />
+        <MovieListBox>
+          <MovieList movies={movies} />
+        </MovieListBox>
+
         <MovieWatchedBox movies={movies} />
       </Main>
     </>
