@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./Components/Navbar";
 import Main from "./Components/Main";
 import MovieListBox from "./Components/MovieListBox";
 import MovieWatchedBox from "./Components/MovieWatchedBox";
 import MovieList from "./Components/MovieList";
+import Loader from "./Components/Loader";
 
 export const tempMovieData = [
   {
@@ -53,15 +54,31 @@ export const tempWatchedData = [
   },
 ];
 
+const KEY = "9628e95c";
+
 export default function App() {
-  const [movies, setMovies] = useState(tempMovieData);
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(function () {
+    async function fetchMovies() {
+      setIsLoading(true);
+      const response = await fetch(
+        `http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`
+      );
+      const data = await response.json();
+      setMovies(data.Search);
+      setIsLoading(false);
+    }
+    fetchMovies();
+  }, []);
 
   return (
     <>
       <Navbar movies={movies} />
       <Main>
         <MovieListBox>
-          <MovieList movies={movies} />
+          {isLoading ? <Loader /> : <MovieList movies={movies} />}
         </MovieListBox>
 
         <MovieWatchedBox movies={movies} />
