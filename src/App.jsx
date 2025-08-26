@@ -61,38 +61,45 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [query, setQuery] = useState("");
 
-  useEffect(function () {
-    async function fetchMovies() {
-      try {
-        setIsLoading(true);
-        const response = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`
-        );
+  useEffect(
+    function () {
+      async function fetchMovies() {
+        try {
+          setIsLoading(true);
+          const response = await fetch(
+            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+          );
 
-        if (!response.ok) throw new Error("Something went wrong");
+          if (!response.ok) throw new Error("Something went wrong");
 
-        const data = await response.json();
-        setMovies(data.Search);
-        setIsLoading(false);
-      } catch (err) {
-        console.error(err.message);
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
+          const data = await response.json();
+
+          if (data.Response === "False") throw new Error("Movie not found!");
+          setMovies(data.Search);
+          setIsLoading(false);
+        } catch (err) {
+          console.error(err.message);
+          setError(err.message);
+          setMovies([]);
+        } finally {
+          setIsLoading(false);
+        }
       }
-    }
-    fetchMovies();
-  }, []);
+      fetchMovies();
+    },
+    [query]
+  );
 
   return (
     <>
-      <Navbar movies={movies} />
+      <Navbar movies={movies} setQuery={setQuery} query={query} />
       <Main>
         <MovieListBox>
           {isLoading && <Loader />}
+          {error && <Error message={error} />}
           {!isLoading && !error && <MovieList movies={movies} />}
-          {error && <Error message={message} />}
         </MovieListBox>
 
         <MovieWatchedBox movies={movies} />

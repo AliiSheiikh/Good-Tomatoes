@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-export default function Navbar({ movies }) {
-  const [query, setQuery] = useState("");
+export default function Navbar({ movies, query, setQuery }) {
   return (
     <nav className="nav-bar">
       <div className="logo">
