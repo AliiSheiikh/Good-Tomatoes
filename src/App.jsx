@@ -7,6 +7,7 @@ import MovieWatchedBox from "./Components/MovieWatchedBox";
 import MovieList from "./Components/MovieList";
 import Loader from "./Components/Loader";
 import Error from "./Components/Error";
+import MovieDetails from "./Components/MovieDetails";
 
 export const tempMovieData = [
   {
@@ -62,6 +63,15 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
+  const [selectedId, setSelectedId] = useState(null);
+
+  function handleSelectId(id) {
+    setSelectedId(id);
+  }
+
+  function handleCloseMovie() {
+    setSelectedId(null);
+  }
 
   useEffect(
     function () {
@@ -99,10 +109,21 @@ export default function App() {
         <MovieListBox>
           {isLoading && <Loader />}
           {error && <Error message={error} />}
-          {!isLoading && !error && <MovieList movies={movies} />}
+          {!isLoading && !error && (
+            <MovieList handleSelectId={handleSelectId} movies={movies} />
+          )}
         </MovieListBox>
 
-        <MovieWatchedBox movies={movies} />
+        <MovieListBox>
+          {selectedId ? (
+            <MovieDetails
+              handleCloseMovie={handleCloseMovie}
+              selectedId={selectedId}
+            />
+          ) : (
+            <MovieWatchedBox movies={movies} />
+          )}
+        </MovieListBox>
       </Main>
     </>
   );
