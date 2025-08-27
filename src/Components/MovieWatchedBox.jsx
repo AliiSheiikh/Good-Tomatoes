@@ -2,13 +2,16 @@ import { useState } from "react";
 import { tempMovieData, tempWatchedData } from "../App";
 import WatchedMovie from "./WatchedMovie";
 
-export default function MovieWatchedBox({ movies }) {
+export default function MovieWatchedBox({
+  movies,
+  watched,
+  setWatched,
+  handleDeleteWatched,
+}) {
   const [isOpen2, setIsOpen2] = useState(true);
 
   const average = (arr) =>
     arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
-
-  const [watched, setWatched] = useState([]);
 
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = average(watched.map((movie) => movie.userRating));
@@ -33,11 +36,11 @@ export default function MovieWatchedBox({ movies }) {
               </p>
               <p>
                 <span>⭐️</span>
-                <span>{avgImdbRating}</span>
+                <span>{avgImdbRating.toFixed(2)}</span>
               </p>
               <p>
                 <span>🌟</span>
-                <span>{avgUserRating}</span>
+                <span>{avgUserRating.toFixed(2)}</span>
               </p>
               <p>
                 <span>⏳</span>
@@ -48,7 +51,10 @@ export default function MovieWatchedBox({ movies }) {
 
           <ul className="list">
             {watched.map((movie) => (
-              <WatchedMovie movie={movie} />
+              <WatchedMovie
+                movie={movie}
+                handleDeleteWatched={handleDeleteWatched}
+              />
             ))}
           </ul>
         </>

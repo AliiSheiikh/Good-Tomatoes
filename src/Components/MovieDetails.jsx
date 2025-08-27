@@ -2,8 +2,15 @@ import { useEffect, useState } from "react";
 import { KEY } from "../App";
 import StarRating from "./StarRating";
 
-export default function MovieDetails({ selectedId, handleCloseMovie }) {
+export default function MovieDetails({
+  selectedId,
+  handleCloseMovie,
+  handleAddWatched,
+  watched,
+}) {
   const [movie, setMovie] = useState({});
+  const [userRating, setUserRating] = useState(0);
+  const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
 
   const {
     Title: title,
@@ -17,6 +24,20 @@ export default function MovieDetails({ selectedId, handleCloseMovie }) {
     Director: director,
     Genre: genre,
   } = movie;
+
+  function handleAdd() {
+    const newMovie = {
+      imdbID: selectedId,
+      title,
+      year,
+      poster,
+      imdbRating: Number(imdbRating),
+      runtime: Number(runtime.split(" ").at(0)),
+      userRating,
+    };
+    handleAddWatched(newMovie);
+    handleCloseMovie();
+  }
 
   useEffect(
     function () {
@@ -53,7 +74,23 @@ export default function MovieDetails({ selectedId, handleCloseMovie }) {
 
       <section>
         <div className="rating">
-          <StarRating maxRating={10} size={24} />
+          {!isWatched ? (
+            <>
+              <StarRating
+                maxRating={10}
+                size={24}
+                onSetRating={setUserRating}
+              />
+
+              {userRating > 0 && (
+                <button className="btn-add" onClick={handleAdd}>
+                  + Add to list
+                </button>
+              )}
+            </>
+          ) : (
+            <p>You rated this already!</p>
+          )}
         </div>
         <p>
           <em>{plot}</em>
