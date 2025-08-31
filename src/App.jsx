@@ -84,11 +84,14 @@ export default function App() {
 
   useEffect(
     function () {
+      const controller = new AbortController();
+
       async function fetchMovies() {
         try {
           setIsLoading(true);
           const response = await fetch(
-            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+            { signal: controller.signal } //better http requests
           );
 
           if (!response.ok) throw new Error("Something went wrong");
@@ -107,6 +110,10 @@ export default function App() {
         }
       }
       fetchMovies();
+
+      return function () {
+        controller.abort(); //cleanup function for better http requests with each keystroke
+      };
     },
     [query]
   );
