@@ -5,6 +5,18 @@ Good-Tomatoes allows users to explore movies, rate them, and manage a personal w
 
 ## Preview  
 
+### Main Home Page
+<img width="1118" height="626" alt="image" src="https://github.com/user-attachments/assets/33fb359c-fd63-4d9c-a047-96f4be0474bf" />
+
+### Review Page
+<img width="1125" height="623" alt="image" src="https://github.com/user-attachments/assets/2592a77e-fee3-446a-8a14-ce46168bdfb9" />
+
+### Main Home Page After Reviews
+<img width="1121" height="619" alt="image" src="https://github.com/user-attachments/assets/1f8eb5b7-7592-49f4-8a1a-47f835888c93" />
+
+
+
+
 
 ## Features  
 
