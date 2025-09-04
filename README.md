@@ -3,12 +3,8 @@
 A sleek and responsive movie review application built with **React**.  
 Good-Tomatoes allows users to explore movies, rate them, and manage a personal watched list — inspired by Rotten Tomatoes.  
 
----
-
 ## Preview  
 
-
----
 
 ## Features  
 
@@ -18,7 +14,6 @@ Good-Tomatoes allows users to explore movies, rate them, and manage a personal w
 - **Fast & Lightweight** – Built with React + Vite for optimal performance.  
 - **Modern UI** – Responsive, simple, and intuitive design.  
 
----
 
 ## Prerequisites  
 
@@ -26,8 +21,6 @@ Before you begin, make sure you have installed:
 
 - [Node.js](https://nodejs.org/) (v16 or later recommended)  
 - npm or yarn package manager  
-
----
 
 ## Setup and Installation  
 
@@ -48,9 +41,6 @@ Before you begin, make sure you have installed:
    npm run dev
    ```
 
-The app will be available at **http://localhost:5173/** by default.  
-
----
 
 ## Technology Stack  
 
