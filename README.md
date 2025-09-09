@@ -20,7 +20,7 @@ Good-Tomatoes allows users to explore movies, rate them, and manage a personal w
 
 ## Features  
 
-- **Search Movies** – Find movies by title.  
+- **Search Movies** – Find movies by title with the help of OMDb API.  
 - **Rate & Review** – Add personal ratings and reviews.  
 - **Watched List Management** – Track and delete movies from your watched collection.  
 - **Fast & Lightweight** – Built with React + Vite for optimal performance.  
@@ -32,7 +32,8 @@ Good-Tomatoes allows users to explore movies, rate them, and manage a personal w
 Before you begin, make sure you have installed:  
 
 - [Node.js](https://nodejs.org/) (v16 or later recommended)  
-- npm or yarn package manager  
+- npm or yarn package manager
+- OMDb API key
 
 ## Setup and Installation  
 
@@ -52,9 +53,3 @@ Before you begin, make sure you have installed:
    ```bash
    npm run dev
    ```
-
-
-## Technology Stack  
-
-- **React** – Frontend and Backend 
-- **CSS** – Custom styling  
