@@ -1,6 +1,6 @@
 # Good-Tomatoes   
  
-Good-Tomatoes allows users to explore movies, rate them, and manage a personal watched list — inspired by Rotten Tomatoes.  
+Good-Tomatoes allows users to explore movies, rate them, and manage a personal watched list — inspired by Rotten Tomatoes. It uses the OMDb API for up-to-date movie curation.
 
 ## Preview  
 
