@@ -1,6 +1,5 @@
 # Good-Tomatoes   
-
-A sleek and responsive movie review application built with **React**.  
+ 
 Good-Tomatoes allows users to explore movies, rate them, and manage a personal watched list — inspired by Rotten Tomatoes.  
 
 ## Preview  
